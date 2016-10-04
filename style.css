@@ -1,10 +1,10 @@
 html {
-   background-color: lightblue;
+   background-color: black;
  }
 
 header {
    font-size: 30px;
-   color: darkblue;
+   color: white;
    font-family: sans-serif;
    text-align: center;
  }
@@ -15,6 +15,6 @@ header {
  }
 
 .image {
-   width: 450px;
-   height: 450px;
+   width: 400px;
+   height: 400px;
  }

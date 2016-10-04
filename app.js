@@ -1,16 +1,18 @@
 'use strict';
 
 var allImages = [];
+var totalClicks = 0;
 
 function UserSurveyImages(name, filepath) {
   this.name = name;
   this.filepath = filepath;
-  this.shown = 0;
   this.clicked = 0;
   allImages.push(this);
 };
 
-function generateRandomIndex() {
+console.log(allImages);
+
+function generateRandomNumber() {
   return Math.floor(Math.random() * allImages.length);
 };
 
@@ -36,14 +38,28 @@ new UserSurveyImages('Water Can', 'img/water-can.jpg');
 new UserSurveyImages('Wine Glass', 'img/wine-glass.jpg');
 
 console.log(allImages);
-generateRandomIndex();
+generateRandomNumber();
 
 var images = document.getElementById('images');
 
 function generateRandomImages() {
-  var image1 = document.getElementById('image1').src = allImages[generateRandomIndex()].filepath;
-  var image2 = document.getElementById('image2').src = allImages[generateRandomIndex()].filepath;
-  var image3 = document.getElementById('image3').src = allImages[generateRandomIndex()].filepath;
+  var image1 = document.getElementById('image1');
+  var image2 = document.getElementById('image2');
+  var image3 = document.getElementById('image3');
+  var number1 = generateRandomNumber();
+  var number2 = generateRandomNumber();
+  var number3 = generateRandomNumber();
+
+  image1.src = allImages[number1].filepath;
+  image2.src = allImages[number2].filepath;
+  image3.src = allImages[number3].filepath;
+  image1.name = allImages[number1].name;
+  image2.name = allImages[number2].name;
+  image3.name = allImages[number3].name;
+
+  while (image1.src === image2.src || image1.src === image3.src || image2.src === image3.src) {
+    generateRandomImages();
+  }
   images.appendChild(image1);
   images.appendChild(image2);
   images.appendChild(image3);
