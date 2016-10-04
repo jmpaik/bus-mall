@@ -10,12 +10,6 @@ function UserSurveyImages(name, filepath) {
   allImages.push(this);
 };
 
-console.log(allImages);
-
-function generateRandomNumber() {
-  return Math.floor(Math.random() * allImages.length);
-};
-
 new UserSurveyImages('Bag', 'img/bag.jpg');
 new UserSurveyImages('Banana', 'img/banana.jpg');
 new UserSurveyImages('Bathroom', 'img/bathroom.jpg');
@@ -37,32 +31,103 @@ new UserSurveyImages('USB', 'img/usb.gif');
 new UserSurveyImages('Water Can', 'img/water-can.jpg');
 new UserSurveyImages('Wine Glass', 'img/wine-glass.jpg');
 
-console.log(allImages);
-generateRandomNumber();
+var tracker = {
 
-var images = document.getElementById('images');
+  generateRandomNumber: function() {
+    return Math.floor(Math.random() * allImages.length);
+  },
 
-function generateRandomImages() {
-  var image1 = document.getElementById('image1');
-  var image2 = document.getElementById('image2');
-  var image3 = document.getElementById('image3');
-  var number1 = generateRandomNumber();
-  var number2 = generateRandomNumber();
-  var number3 = generateRandomNumber();
+  images: document.getElementById('images'),
 
-  image1.src = allImages[number1].filepath;
-  image2.src = allImages[number2].filepath;
-  image3.src = allImages[number3].filepath;
-  image1.name = allImages[number1].name;
-  image2.name = allImages[number2].name;
-  image3.name = allImages[number3].name;
+  generateRandomImages: function() {
+    var image1 = document.getElementById('image1');
+    var image2 = document.getElementById('image2');
+    var image3 = document.getElementById('image3');
+    var number1 = this.generateRandomNumber();
+    var number2 = this.generateRandomNumber();
+    var number3 = this.generateRandomNumber();
 
-  while (image1.src === image2.src || image1.src === image3.src || image2.src === image3.src) {
-    generateRandomImages();
-  }
-  images.appendChild(image1);
-  images.appendChild(image2);
-  images.appendChild(image3);
-}
+    image1.src = allImages[number1].filepath;
+    image2.src = allImages[number2].filepath;
+    image3.src = allImages[number3].filepath;
+    image1.name = allImages[number1].name;
+    image2.name = allImages[number2].name;
+    image3.name = allImages[number3].name;
 
-generateRandomImages();
+    while (image1.src === image2.src || image1.src === image3.src || image2.src === image3.src) {
+      this.generateRandomImages();
+    };
+    this.images.appendChild(image1);
+    this.images.appendChild(image2);
+    this.images.appendChild(image3);
+  },
+
+//Function to track clicks//
+  clickCounter: function(event) {
+    if (totalClicks < 26) {
+      totalClicks++;
+      for (var i = 0; i < allImages.length; i++) {
+        if (allImages[i].name === event.target.name) {
+          allImages[i].clicked++;
+        }
+      }
+      tracker.generateRandomImages;
+    }
+    else {
+      leftImage.removeEventListener;
+      centerImage.removeEventListener;
+      rightImage.removeEventListener;
+    }
+  },
+
+  generateEventListeners: function () {
+    leftImage = document.getElementById('image1');
+    centerImage = document.getElementById('image2');
+    rightImage = document.getElementById('image3');
+    submitButton = document.getElementById('submit');
+    leftImage.addEventListener('click', clickCounter);
+    centerImage.addEventListener('click', clickCounter);
+    rightImage.addEventListener('click', clickCounter);
+    submitButton.addEventListener('click', this.generateTable);
+  },
+
+//Function to make results table//
+  tableEl: document.getElementById('table'),
+
+  generateTableHeader: function() {
+    var trEl = document.createElement('tr');
+    var emptyThEl = document.createElement('th');
+
+    emptyThEl.textContent = '';
+    trEl.appendChild(emptyThEl);
+
+    for (var i in allImages) {
+      var thEl = document.createElement('th');
+      thEl.textContent = allImages[i].name;
+      trEl.appendChild(thEl);
+    }
+    this.tableEl.appendChild(trEl);
+  },
+
+  generateTableBody: function() {
+    var trEl = document.createElement('tr');
+    var totalsTdEl = document.createElement('td');
+    totalsTdEl.textContent = 'Number of Image Clicks';
+    trEl.appendChild(totalsTdEl);
+    for (var i in allImages) {
+      var tdEl = document.createElement('td');
+      tdEl.textContent = allImages[i].clicked;
+      trEl.appendChild(tdEl);
+    }
+    this.tableEl.appendChild(trEl);
+  },
+
+  generateTable: function() {
+    tracker.generateTableHeader();
+    tracker.generateTableBody();
+    submitButton.removeEventListener('click', generateTable);
+  },
+};
+
+tracker.generateRandomImages();
+tracker.generateEventListeners();

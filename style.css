@@ -1,20 +1,33 @@
 html {
-   background-color: black;
+  background-color: black;
  }
 
 header {
-   font-size: 30px;
-   color: white;
-   font-family: sans-serif;
-   text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-size: 35px;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
  }
 
 #images {
-   display: flex;
-   justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
  }
 
+ #submit {
+  margin: 15px;
+  border-radius: 5px;
+  border-color: red;
+  font-size: 15px;
+
 .image {
-   width: 400px;
-   height: 400px;
+  width: 400px;
+  height: 400px;
  }
+
+ #table {
+  text-align: center;
+  font-size: 18px;
+}
