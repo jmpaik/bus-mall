@@ -2,6 +2,7 @@
 <html>
    <head>
      <link rel="stylesheet" href="style.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
      <title>Bus Mall</title>
    </head>
    <body>
@@ -13,8 +14,9 @@
        <img src="" id="image2" class="image">
        <img src="" id="image3" class="image">
      </div>
-     <button type='submit' id='submit'>View Your Results</button>
+     <button type="submit" id="submit" class="hidden">View Your Results</button>
      <table id="table"></table>
+     <canvas id="chart" width="800px" height="400px"></canvas>
      <script type="text/javascript" src="app.js"></script>
    </body>
  </html>
