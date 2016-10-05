@@ -22,3 +22,29 @@ header {
  table {
    background-color: white;
  }
+
+ #chart {
+   display:block;
+   margin: 30px auto;
+ }
+
+ .hidden {
+   display: none;
+ }
+
+ .shown {
+   display: block;
+ }
+
+ #submit {
+   margin: 20px auto;
+   padding: 10px 20px;
+   border-radius: 4px;
+   background-color: white;
+   outline: 0;
+ }
+
+ #submit:hover {
+   background-color: #d5d5d5;
+   outline: 0;
+ }
